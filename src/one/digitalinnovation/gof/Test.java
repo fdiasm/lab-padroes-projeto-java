@@ -1,6 +1,8 @@
 package one.digitalinnovation.gof;
 
 import one.digitalinnovation.gof.facade.Facade;
+import one.digitalinnovation.gof.factory.User;
+import one.digitalinnovation.gof.factory.UserFactory;
 import one.digitalinnovation.gof.singleton.SingletonEager;
 import one.digitalinnovation.gof.singleton.SingletonLazy;
 import one.digitalinnovation.gof.singleton.SingletonLazyHolder;
@@ -15,6 +17,7 @@ public class Test {
 	public static void main(String[] args) {
 		
 		// Singleton
+		System.out.println("\n-----Singleton-----\n");
 		
 		SingletonLazy lazy = SingletonLazy.getInstancia();
 		System.out.println(lazy);
@@ -32,6 +35,7 @@ public class Test {
 		System.out.println(lazyHolder);
 		
 		// Strategy
+		System.out.println("\n-----Strategy-----\n");
 		
 		Comportamento defensivo = new ComportamentoDefensivo();
 		Comportamento normal = new ComportamentoNormal();
@@ -49,9 +53,24 @@ public class Test {
 		robo.mover();
 		
 		// Facade
+		System.out.println("\n-----Facade-----\n");
 		
 		Facade facade = new Facade();
 		facade.migrarCliente("Venilton", "14801788");
+
+		// Factory
+		System.out.println("\n-----Factory-----\n");
+
+		User user1 = UserFactory.newAdmin(1l, "My Name");
+		user1.addPendingTask(user1, "task1");
+		user1.addPendingTask(user1, "task2");
+		user1.completeTask();	
+
+		User user2 = UserFactory.newOperator(2l, "Operator");
+		user2.addPendingTask(user1, "task2");
+
+		System.out.println(user1.toString());
+		System.out.println(user2.toString());
 	}
 
 }
