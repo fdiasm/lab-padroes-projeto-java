@@ -1,5 +1,6 @@
 package one.digitalinnovation.gof;
 
+import one.digitalinnovation.gof.builder.Player;
 import one.digitalinnovation.gof.facade.Facade;
 import one.digitalinnovation.gof.factory.User;
 import one.digitalinnovation.gof.factory.UserFactory;
@@ -71,6 +72,20 @@ public class Test {
 
 		System.out.println(user1.toString());
 		System.out.println(user2.toString());
+
+		// Builder
+		System.out.println("\n-----Builder-----\n");
+
+		Player player1 = new Player.PlayerBuilder("Player1", 40, "Soccer")
+			.setIsRetired(true)
+			.setHasOlympicMedal(true)
+			.build();
+
+		Player player2 = new Player.PlayerBuilder("Player2", 24, "Volleyball")
+			.build();
+
+		System.out.println(player1.toString());
+		System.out.println(player2.toString());
 	}
 
 }
